@@ -27,6 +27,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add datos.json
+          git add preciosChicago.json
           git commit -m "Actualización diaria automática de datos.json" || echo "Sin cambios para commitear"
           git push
