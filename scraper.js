@@ -6,10 +6,7 @@ async function scrapeChicagoPrices() {
 
     try {
         console.log('[INFO] Iniciando Puppeteer...');
-        browser = await puppeteer.launch({
-            headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
-        });
+        browser = await puppeteer.launch({ headless: true }); // Sin flags especiales
 
         const page = await browser.newPage();
         await page.setUserAgent('Mozilla/5.0');
@@ -19,10 +16,6 @@ async function scrapeChicagoPrices() {
             waitUntil: 'networkidle2',
             timeout: 0,
         });
-
-        console.log('[INFO] Tomando HTML completo...');
-        const html = await page.content();
-        console.log('[INFO] Longitud del HTML:', html.length);
 
         console.log('[INFO] Extrayendo datos...');
         const datosChicago = await page.evaluate(() => {
@@ -63,10 +56,23 @@ async function scrapeChicagoPrices() {
         console.log('[INFO] Datos filtrados:', filtrados);
 
         if (filtrados.length > 0) {
-            fs.writeFileSync('preciosChicago.json', JSON.stringify(filtrados, null, 2));
-            console.log('[INFO] Datos guardados en preciosChicago.json');
+            // Leer archivo previo para comparar (opcional)
+            let prevData = [];
+            if (fs.existsSync('preciosChicago.json')) {
+                prevData = JSON.parse(fs.readFileSync('preciosChicago.json', 'utf8'));
+            }
+
+            const prevJSON = JSON.stringify(prevData);
+            const newJSON = JSON.stringify(filtrados);
+
+            if (prevJSON !== newJSON) {
+                fs.writeFileSync('preciosChicago.json', newJSON, 'utf8');
+                console.log('[INFO] Datos guardados en preciosChicago.json');
+            } else {
+                console.log('[INFO] Datos iguales a la versión anterior, no se modificó el archivo.');
+            }
         } else {
-            console.log('[INFO] No hay cambios en los datos. Archivo no modificado.');
+            console.log('[INFO] No hay datos filtrados para guardar.');
         }
 
         await browser.close();
