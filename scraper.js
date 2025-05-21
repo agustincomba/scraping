@@ -48,8 +48,23 @@ async function scrapeChicagoPrices() {
             (item.producto === 'Trigo Chicago' && item.posicion === 'Sep2025')
         );
 
-        console.log('[INFO] Guardando resultados en JSON...');
-        fs.writeFileSync('preciosChicago.json', JSON.stringify(filtrados, null, 2));
+        const path = 'preciosChicago.json';
+        const nuevoContenido = JSON.stringify(filtrados, null, 2);
+
+        let escribir = true;
+
+        if (fs.existsSync(path)) {
+            const actualContenido = fs.readFileSync(path, 'utf-8');
+            if (actualContenido === nuevoContenido) {
+                escribir = false;
+                console.log('[INFO] No hay cambios en los datos. Archivo no modificado.');
+            }
+        }
+
+        if (escribir) {
+            fs.writeFileSync(path, nuevoContenido);
+            console.log('[INFO] Archivo preciosChicago.json actualizado.');
+        }
 
         await browser.close();
         console.log('[INFO] Scraping finalizado con éxito.');
@@ -57,6 +72,7 @@ async function scrapeChicagoPrices() {
     } catch (err) {
         if (browser) await browser.close();
         console.error('[ERROR] Hubo un problema:', err);
+        process.exit(1);
     }
 }
 
