@@ -1,0 +1,183 @@
+--- Ejecución: mi�. 21/05/2025 19:12:07,56 --- 
+Ejecutando scraper.js... 
+[INFO] Iniciando Puppeteer...
+[INFO] Navegando a la web...
+[INFO] Extrayendo datos...
+[INFO] Datos scrapeados completos: [
+  {
+    producto: 'Aceite de Soja',
+    posicion: 'Sep2025',
+    cierre: '1.097,21',
+    variacion: '0,12'
+  },
+  {
+    producto: 'Aceite de Soja',
+    posicion: 'Oct2025',
+    cierre: '1.097,65',
+    variacion: '0,14'
+  },
+  {
+    producto: 'Aceite de Soja',
+    posicion: 'Dic2025',
+    cierre: '1.101,84',
+    variacion: '0,12'
+  },
+  {
+    producto: 'Harina de Soja',
+    posicion: 'Jul2025',
+    cierre: '322,53',
+    variacion: '0,52'
+  },
+  {
+    producto: 'Harina de Soja',
+    posicion: 'Ago2025',
+    cierre: '326,28',
+    variacion: '0,48'
+  },
+  {
+    producto: 'Harina de Soja',
+    posicion: 'Sep2025',
+    cierre: '329,26',
+    variacion: '0,44'
+  },
+  {
+    producto: 'Harina de Soja',
+    posicion: 'Oct2025',
+    cierre: '330,91',
+    variacion: '0,43'
+  },
+  {
+    producto: 'Harina de Soja',
+    posicion: 'Dic2025',
+    cierre: '335,54',
+    variacion: '0,50'
+  },
+  {
+    producto: 'Maíz',
+    posicion: 'Jul2025',
+    cierre: '178,94',
+    variacion: '1,56'
+  },
+  {
+    producto: 'Maíz',
+    posicion: 'Sep2025',
+    cierre: '171,36',
+    variacion: '1,63'
+  },
+  {
+    producto: 'Maíz',
+    posicion: 'Dic2025',
+    cierre: '176,57',
+    variacion: '1,53'
+  },
+  {
+    producto: 'Maíz',
+    posicion: 'Mar2026',
+    cierre: '182,28',
+    variacion: '1,42'
+  },
+  {
+    producto: 'Soja',
+    posicion: 'Jul2025',
+    cierre: '386,87',
+    variacion: '0,21'
+  },
+  {
+    producto: 'Soja',
+    posicion: 'Ago2025',
+    cierre: '385,86',
+    variacion: '0,24'
+  },
+  {
+    producto: 'Soja',
+    posicion: 'Sep2025',
+    cierre: '379,89',
+    variacion: '0,34'
+  },
+  {
+    producto: 'Soja',
+    posicion: 'Nov2025',
+    cierre: '382,46',
+    variacion: '0,39'
+  },
+  {
+    producto: 'Soja',
+    posicion: 'Ene2026',
+    cierre: '386,87',
+    variacion: '0,38'
+  },
+  {
+    producto: 'Trigo Chicago',
+    posicion: 'Sep2025',
+    cierre: '205,65',
+    variacion: '3,08'
+  },
+  {
+    producto: 'Trigo Chicago',
+    posicion: 'Dic2025',
+    cierre: '213,18',
+    variacion: '2,79'
+  },
+  {
+    producto: 'Trigo Chicago',
+    posicion: 'Mar2026',
+    cierre: '220,07',
+    variacion: '2,57'
+  },
+  {
+    producto: 'Trigo Kansas',
+    posicion: 'Jul2025',
+    cierre: '197,02',
+    variacion: '2,58'
+  },
+  {
+    producto: 'Trigo Kansas',
+    posicion: 'Sep2025',
+    cierre: '202,07',
+    variacion: '2,52'
+  },
+  {
+    producto: 'Trigo Kansas',
+    posicion: 'Dic2025',
+    cierre: '209,97',
+    variacion: '2,33'
+  },
+  {
+    producto: 'Trigo Kansas',
+    posicion: 'Mar2026',
+    cierre: '217,04',
+    variacion: '2,16'
+  }
+]
+[INFO] Datos filtrados: [
+  {
+    producto: 'Maíz',
+    posicion: 'Jul2025',
+    cierre: '178,94',
+    variacion: '1,56'
+  },
+  {
+    producto: 'Soja',
+    posicion: 'Jul2025',
+    cierre: '386,87',
+    variacion: '0,21'
+  },
+  {
+    producto: 'Trigo Chicago',
+    posicion: 'Sep2025',
+    cierre: '205,65',
+    variacion: '3,08'
+  }
+]
+[INFO] Datos iguales a la versión anterior, no se modificó el archivo.
+[INFO] Scraping finalizado con éxito.
+Agregando preciosChicago.json... 
+Haciendo commit... 
+[main 84b8f53] Actualizaci├│n autom├ítica mié. 21/05/2025 19:12:12,93
+ 1 file changed, 1 insertion(+), 20 deletions(-)
+Haciendo push a GitHub... 
+fatal: User cancelled dialog.
+bash: line 1: /dev/tty: No such device or address
+error: failed to execute prompt script (exit code 1)
+fatal: could not read Username for 'https://github.com': No such file or directory
+--- Fin de ejecución --- 
