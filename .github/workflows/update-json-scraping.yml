@@ -1,4 +1,4 @@
-name: Ejecutar scraper simple
+name: Ejecutar scraper para preciosChicagos.json
 
 on:
   schedule:
@@ -16,7 +16,17 @@ jobs:
         with:
           node-version: '18'
 
-      - run: |
+      - name: Instalar dependencias si hay
+        run: |
           if [ -f package.json ]; then npm install; fi
 
-      - run: node scraper.js
+      - name: Ejecutar scraper
+        run: node scraper.js
+
+      - name: Commit y push de cambios en datos.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add datos.json
+          git commit -m "Actualización diaria automática de datos.json" || echo "Sin cambios para commitear"
+          git push
