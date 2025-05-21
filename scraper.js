@@ -6,13 +6,23 @@ async function scrapeChicagoPrices() {
 
     try {
         console.log('[INFO] Iniciando Puppeteer...');
-        browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
-        const page = await browser.newPage();
+        browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
+        });
 
+        const page = await browser.newPage();
         await page.setUserAgent('Mozilla/5.0');
+
+        console.log('[INFO] Navegando a la web...');
         await page.goto('https://www.bolsadecereales.com/precios-internacionales', {
             waitUntil: 'networkidle2',
+            timeout: 0,
         });
+
+        console.log('[INFO] Tomando HTML completo...');
+        const html = await page.content();
+        console.log('[INFO] Longitud del HTML:', html.length);
 
         console.log('[INFO] Extrayendo datos...');
         const datosChicago = await page.evaluate(() => {
@@ -52,22 +62,11 @@ async function scrapeChicagoPrices() {
 
         console.log('[INFO] Datos filtrados:', filtrados);
 
-        const path = 'preciosChicago.json';
-        const nuevoContenido = JSON.stringify(filtrados, null, 2);
-
-        let escribir = true;
-
-        if (fs.existsSync(path)) {
-            const actualContenido = fs.readFileSync(path, 'utf-8');
-            if (actualContenido === nuevoContenido) {
-                escribir = false;
-                console.log('[INFO] No hay cambios en los datos. Archivo no modificado.');
-            }
-        }
-
-        if (escribir) {
-            fs.writeFileSync(path, nuevoContenido);
-            console.log('[INFO] Archivo preciosChicago.json actualizado.');
+        if (filtrados.length > 0) {
+            fs.writeFileSync('preciosChicago.json', JSON.stringify(filtrados, null, 2));
+            console.log('[INFO] Datos guardados en preciosChicago.json');
+        } else {
+            console.log('[INFO] No hay cambios en los datos. Archivo no modificado.');
         }
 
         await browser.close();
@@ -76,7 +75,6 @@ async function scrapeChicagoPrices() {
     } catch (err) {
         if (browser) await browser.close();
         console.error('[ERROR] Hubo un problema:', err);
-        process.exit(1);
     }
 }
 

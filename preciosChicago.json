@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "producto": "Maíz",
+    "posicion": "Jul2025",
+    "cierre": "178,94",
+    "variacion": "1,56"
+  },
+  {
+    "producto": "Soja",
+    "posicion": "Jul2025",
+    "cierre": "386,87",
+    "variacion": "0,21"
+  },
+  {
+    "producto": "Trigo Chicago",
+    "posicion": "Sep2025",
+    "cierre": "205,65",
+    "variacion": "3,08"
+  }
+]
