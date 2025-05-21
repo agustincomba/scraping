@@ -1,36 +1,22 @@
-name: Actualizar JSON automáticamente
+name: Ejecutar scraper simple
 
 on:
   schedule:
-    - cron: '0 19 * * *'  # Ejecuta a las 16:00 hora Argentina (19:00 UTC)
-  workflow_dispatch:        # Permite ejecución manual
+    - cron: '0 19 * * *'  # Ejecuta todos los días a las 16:00 Argentina (19:00 UTC)
+  workflow_dispatch:
 
 jobs:
   run-scraper:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar el repositorio
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Configurar Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name: Instalar dependencias (si usás npm)
-        run: |
-          if [ -f package.json ]; then
-            npm install
-          fi
+      - run: |
+          if [ -f package.json ]; then npm install; fi
 
-      - name: Ejecutar script de scraping
-        run: node scraper.js
-
-      - name: Commit y push del JSON actualizado
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add datos.json
-          git commit -m "Actualización diaria del JSON"
-          git push
+      - run: node scraper.js
