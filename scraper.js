@@ -6,7 +6,7 @@ async function scrapeChicagoPrices() {
 
     try {
         console.log('[INFO] Iniciando Puppeteer...');
-        browser = await puppeteer.launch({ headless: true }); // Sin flags especiales
+        browser = await puppeteer.launch({ headless: true });
 
         const page = await browser.newPage();
         await page.setUserAgent('Mozilla/5.0');
@@ -56,7 +56,6 @@ async function scrapeChicagoPrices() {
         console.log('[INFO] Datos filtrados:', filtrados);
 
         if (filtrados.length > 0) {
-            // Leer archivo previo para comparar (opcional)
             let prevData = [];
             if (fs.existsSync('preciosChicago.json')) {
                 prevData = JSON.parse(fs.readFileSync('preciosChicago.json', 'utf8'));
