@@ -25,7 +25,7 @@ jobs:
           fi
 
       - name: Ejecutar script de scraping
-        run: node index.js
+        run: node scraper.js
 
       - name: Commit y push del JSON actualizado
         run: |
