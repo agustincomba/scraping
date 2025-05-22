@@ -48,9 +48,9 @@ async function scrapeChicagoPrices() {
         console.log('[INFO] Datos scrapeados completos:', datosChicago);
 
         const filtrados = datosChicago.filter(item =>
-            (item.producto === 'Maíz' ) ||
-            (item.producto === 'Soja' ) ||
-            (item.producto === 'Trigo Chicago' )
+            (item.producto === 'Maíz' && item.posicion === 'Jul2025' ) ||
+            (item.producto === 'Soja' && item.posicion === 'Jul2025' ) ||
+            (item.producto === 'Trigo Chicago' && item.posicion === 'Jul2025' )
         );
 
         console.log('[INFO] Datos filtrados:', filtrados);
